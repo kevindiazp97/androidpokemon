@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableWithoutFeedback, TouchableHighlight, StyleSheet, SafeAreaView, FlatList, TextInput, View, Text, Button} from 'react-native';
+import { TouchableWithoutFeedback, TouchableHighlight, StyleSheet, SafeAreaView, FlatList, TextInput, View, Text, Button, Image} from 'react-native';
 import axios from 'axios';
 
 function DataFethcing() {
@@ -19,7 +19,7 @@ function DataFethcing() {
     // }
     React.useEffect(() => {
       axios
-      .get(`https://pokeapi.co/api/v2/pokemon/`)
+      .get(`https://pokeapi.co/api/v2/pokemon/2`)
       .then (res => {
           console.log(res);
           setPost({
@@ -59,7 +59,7 @@ function DataFethcing() {
           <Text>
               {post.name}
           </Text>
-          <img src={post.images} />
+          {/* <Image source={{uri: `$post.images`} /> */}
       </View>
   )
 }

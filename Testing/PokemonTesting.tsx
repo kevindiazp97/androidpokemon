@@ -1,36 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, Image} from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text, Image, FlatList, ScrollView} from 'react-native';
 import Axios from 'axios';
 
 function PokemonTesting() {
-    const [post, setPost] = React.useState({
-        name : '',
-        images: ''
-    });
+    const [pokeName, setpokeName] = React.useState([""]);
+
+    const [images , setImages] = React.useState({
+        image :''
+    })
 
     React.useEffect(() => {
       Axios
-      .get(`https://pokeapi.co/api/v2/pokemon/`)
+      .get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40')
       .then (res => {
-        console.log(res);
-          setPost({
-              name: res.data.species.name,
-              images: res.data.sprites.front_shiny,
-          })
+        console.log(res.data.results);
+          setpokeName(res.data.results.name)
       })
       .catch(err =>{
           console.log(err);
       })
-    }, [])
+    }, [setpokeName])
+
+
+    // React.useEffect(() => {
+    //     Axios
+    //     .get('https://pokeapi.co/api/v2/pokemon/')
+    //     .then (res => {
+    //         setImages({
+    //             image: res.data.PokemonSprites.front_shiny,
+    //         })
+    //     })
+    //     .catch(err =>{
+    //         console.log(err)
+    //     })
+    // }, [])
+
+
 
   return (
+    // <SafeAreaView>
+    //     {/* <Image
+    //     style = {styles.pic} 
+    //     source={{uri: `$images.image`}} /> */}
+    //     <Text key={names.id}>{names.name}</Text>
+    // </SafeAreaView>
+
     <SafeAreaView>
-        {post.images.length > 0 && (
-        <Image
-        style = {styles.pic} 
-        source={{uri: `$post.images`}} />
-        )}
-        <Text>{`${post.name}`}</Text>
+
+        <FlatList 
+        data = {pokeName}
+        keyExtractor = {(item, index) => {
+            return index.toString()
+            }} 
+        renderItem = {({ item }) => {
+            console.log("item", item)
+            return(
+                //@ts-expect-error
+                <Text>{item.name}</Text>
+            )
+        }} />
+
+        {/* <ScrollView>
+            <Text>{pokeName}</Text>
+            {names &&
+            names.map((items, i) => {
+                return<>
+                <Text>{items}</Text>
+                </>
+            })}
+        </ScrollView> */}
     </SafeAreaView>
   )
 }

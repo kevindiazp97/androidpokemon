@@ -11,10 +11,12 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, Button, Alert, SafeAreaView} from 'react-native';
 import ButtonTesting from './Testing/ButtonTesting';
+import DataFethcing from './Testing/DataFetching';
 import PokemonTesting from './Testing/PokemonTesting';
 
 const App = () => (
   // <ButtonTesting />
+  // <DataFethcing />
   <PokemonTesting />
   // <View style = {[ styles.container, styles.horizontal]}>
   //   <ActivityIndicator />
