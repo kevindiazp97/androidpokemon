@@ -3,18 +3,16 @@ import { StyleSheet, SafeAreaView, View, Text, Image, FlatList, ScrollView} from
 import Axios from 'axios';
 
 function PokemonTesting() {
-    const [pokeName, setpokeName] = React.useState([""]);
+    const [pokeName, setpokeName] = React.useState();
 
-    const [images , setImages] = React.useState({
-        image :''
-    })
+    const [images , setImages] = React.useState()
 
     React.useEffect(() => {
       Axios
-      .get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=40')
+      .get('https://pokeapi.co/api/v2/pokemon/')
       .then (res => {
         console.log(res.data.results);
-          setpokeName(res.data.results.name)
+          setpokeName(res.data.results)
       })
       .catch(err =>{
           console.log(err);
@@ -24,11 +22,10 @@ function PokemonTesting() {
 
     // React.useEffect(() => {
     //     Axios
-    //     .get('https://pokeapi.co/api/v2/pokemon/')
+    //     .get(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`)
     //     .then (res => {
-    //         setImages({
-    //             image: res.data.PokemonSprites.front_shiny,
-    //         })
+    //         console.log(res);
+    //         setImages(res)
     //     })
     //     .catch(err =>{
     //         console.log(err)
@@ -47,28 +44,17 @@ function PokemonTesting() {
 
     <SafeAreaView>
 
-        <FlatList 
-        data = {pokeName}
-        keyExtractor = {(item, index) => {
-            return index.toString()
-            }} 
-        renderItem = {({ item }) => {
-            console.log("item", item)
-            return(
-                //@ts-expect-error
+         <FlatList 
+         data = {pokeName}
+         keyExtractor = {(item, index) => {
+             return index.toString()
+             }} 
+         renderItem = {({ item }) => {
+             console.log("item", item)
+             return(
                 <Text>{item.name}</Text>
-            )
+         )
         }} />
-
-        {/* <ScrollView>
-            <Text>{pokeName}</Text>
-            {names &&
-            names.map((items, i) => {
-                return<>
-                <Text>{items}</Text>
-                </>
-            })}
-        </ScrollView> */}
     </SafeAreaView>
   )
 }
