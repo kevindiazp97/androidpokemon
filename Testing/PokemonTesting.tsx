@@ -22,15 +22,15 @@ function PokemonTesting() {
 
     // React.useEffect(() => {
     //     Axios
-    //     .get(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png`)
+    //     .get(`https://pokeapi.co/api/v2/pokemon/`)
     //     .then (res => {
-    //         console.log(res);
-    //         setImages(res)
+    //         console.log(res.data);
+    //         setImages(res.data.species)
     //     })
     //     .catch(err =>{
     //         console.log(err)
     //     })
-    // }, [])
+    // }, [setImages])
 
 
 
@@ -50,11 +50,12 @@ function PokemonTesting() {
              return index.toString()
              }} 
          renderItem = {({ item }) => {
-             console.log("item", item)
+            //  console.log("item", item)
              return(
-                <Text>{item.name}</Text>
+             <Text>{item.name}</Text>
          )
         }} />
+        
     </SafeAreaView>
   )
 }
