@@ -7,19 +7,6 @@ function PokemonTesting() {
 
     const [images , setImages] = React.useState()
     
-    const displaynamepokemon () {
-             <FlatList 
-         data = {pokeName}
-         keyExtractor = {(item, index) => {
-             return index.toString()
-             }} 
-         renderItem = {({ item }) => {
-            //  console.log("item", item)
-             return(
-             <Text>{item.name}</Text>
-         )
-        }} />
-    }
 
     const namepokemonid = () => {
       return 
