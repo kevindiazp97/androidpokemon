@@ -7,6 +7,11 @@ function PokemonTesting() {
 
     const [images , setImages] = React.useState()
 
+    const namepokemonid = () => {
+      return 
+
+    }
+
     React.useEffect(() => {
       Axios
       .get('https://pokeapi.co/api/v2/pokemon/')
@@ -36,26 +41,24 @@ function PokemonTesting() {
 
   return (
     // <SafeAreaView>
-    //     {/* <Image
-    //     style = {styles.pic} 
-    //     source={{uri: `$images.image`}} /> */}
-    //     <Text key={names.id}>{names.name}</Text>
+
     // </SafeAreaView>
 
     <SafeAreaView>
-
-         <FlatList 
-         data = {pokeName}
-         keyExtractor = {(item, index) => {
-             return index.toString()
-             }} 
-         renderItem = {({ item }) => {
-            //  console.log("item", item)
-             return(
-             <Text>{item.name}</Text>
-         )
+      <FlatList 
+      data = {pokeName}
+      keyExtractor = {(item, index) => {
+        return index.toString()
+      }} 
+      renderItem = {({ item }) => {
+      //  console.log("item", item)
+       return(
+        <Text>{item.name}</Text>
+        )
         }} />
-        
+         {/* <Image
+         style = {styles.pic} 
+         source={{uri: }} /> */}
     </SafeAreaView>
   )
 }
