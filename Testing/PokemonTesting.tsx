@@ -7,15 +7,11 @@ function PokemonTesting() {
 
     const [images , setImages] = React.useState()
     
-
-    const namepokemonid = () => {
-      return 
-
-    }
+    const [id, setId] = React.useState(1)
 
     React.useEffect(() => {
       Axios
-      .get('https://pokeapi.co/api/v2/pokemon/')
+      .get(`https://pokeapi.co/api/v2/pokemon/`)
       .then (res => {
         console.log(res.data.results);
           setpokeName(res.data.results)
@@ -25,25 +21,30 @@ function PokemonTesting() {
       })
     }, [setpokeName])
 
+    const namepokemonid = () => {
+      var i = 0;
+      while (i<5){
+        return (
+          {i}
+        )
+      }
+    } 
 
-    // React.useEffect(() => {
-    //     Axios
-    //     .get(`https://pokeapi.co/api/v2/pokemon/`)
-    //     .then (res => {
-    //         console.log(res.data);
-    //         setImages(res.data.species)
-    //     })
-    //     .catch(err =>{
-    //         console.log(err)
-    //     })
-    // }, [setImages])
+    React.useEffect(() => {
+        Axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${namepokemonid}/`)
+        .then (res => {
+            console.log(res.data.sprites.front_shiny);
+            setImages(res.data.sprites.front_shiny)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }, [setImages])
 
 
 
   return (
-    // <SafeAreaView>
-
-    // </SafeAreaView>
 
     <SafeAreaView>
       <FlatList 
@@ -57,9 +58,10 @@ function PokemonTesting() {
         <Text>{item.name}</Text>
         )
         }} />
-         {/* <Image
+         <Image
          style = {styles.pic} 
-         source={{uri: }} /> */}
+         source={{uri: `${images}`}} />
+         <Text>{namepokemonid}</Text>
     </SafeAreaView>
   )
 }
